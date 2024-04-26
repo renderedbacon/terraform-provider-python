@@ -1,0 +1,30 @@
+[project]
+name = "terraform-provider-python"
+version = "0.1.0"
+description = "Terraform Provider Framework for Python"
+authors = [
+    {name = "Ben Wart", email = "benwart@duck.com"},
+]
+dependencies = [
+    "grpcio>=1.62.2",
+    "msgpack>=1.0.8",
+]
+requires-python = ">=3.12"
+readme = "README.md"
+license = {text = "MIT"}
+
+[project.optional-dependencies]
+dev = [
+    "grpcio-tools>=1.62.2",
+    "black>=24.4.2",
+]
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.black]
+line-length = 119
+
+[tool.pdm]
+distribution = true
