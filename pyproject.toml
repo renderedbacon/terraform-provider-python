@@ -8,6 +8,8 @@ authors = [
 dependencies = [
     "grpcio>=1.62.2",
     "msgpack>=1.0.8",
+    "anyio>=4.3.0",
+    "loguru>=0.7.2",
 ]
 requires-python = ">=3.12"
 readme = "README.md"
@@ -17,6 +19,8 @@ license = {text = "MIT"}
 dev = [
     "grpcio-tools>=1.62.2",
     "black>=24.4.2",
+    "pytest>=8.1.2",
+    "trio>=0.25.0",
 ]
 
 [build-system]
