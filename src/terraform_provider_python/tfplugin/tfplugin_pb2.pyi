@@ -265,9 +265,7 @@ class Schema(_message.Message):
     BLOCK_FIELD_NUMBER: _ClassVar[int]
     version: int
     block: Schema.Block
-    def __init__(
-        self, version: _Optional[int] = ..., block: _Optional[_Union[Schema.Block, _Mapping]] = ...
-    ) -> None: ...
+    def __init__(self, version: _Optional[int] = ..., block: _Optional[_Union[Schema.Block, _Mapping]] = ...) -> None: ...
 
 class Function(_message.Message):
     __slots__ = (
@@ -341,9 +339,7 @@ class ServerCapabilities(_message.Message):
     plan_destroy: bool
     get_provider_schema_optional: bool
     move_resource_state: bool
-    def __init__(
-        self, plan_destroy: bool = ..., get_provider_schema_optional: bool = ..., move_resource_state: bool = ...
-    ) -> None: ...
+    def __init__(self, plan_destroy: bool = ..., get_provider_schema_optional: bool = ..., move_resource_state: bool = ...) -> None: ...
 
 class GetMetadata(_message.Message):
     __slots__ = ()
@@ -417,9 +413,7 @@ class GetProviderSchema(_message.Message):
             VALUE_FIELD_NUMBER: _ClassVar[int]
             key: str
             value: Schema
-            def __init__(
-                self, key: _Optional[str] = ..., value: _Optional[_Union[Schema, _Mapping]] = ...
-            ) -> None: ...
+            def __init__(self, key: _Optional[str] = ..., value: _Optional[_Union[Schema, _Mapping]] = ...) -> None: ...
 
         class DataSourceSchemasEntry(_message.Message):
             __slots__ = ("key", "value")
@@ -427,9 +421,7 @@ class GetProviderSchema(_message.Message):
             VALUE_FIELD_NUMBER: _ClassVar[int]
             key: str
             value: Schema
-            def __init__(
-                self, key: _Optional[str] = ..., value: _Optional[_Union[Schema, _Mapping]] = ...
-            ) -> None: ...
+            def __init__(self, key: _Optional[str] = ..., value: _Optional[_Union[Schema, _Mapping]] = ...) -> None: ...
 
         class FunctionsEntry(_message.Message):
             __slots__ = ("key", "value")
@@ -437,9 +429,7 @@ class GetProviderSchema(_message.Message):
             VALUE_FIELD_NUMBER: _ClassVar[int]
             key: str
             value: Function
-            def __init__(
-                self, key: _Optional[str] = ..., value: _Optional[_Union[Function, _Mapping]] = ...
-            ) -> None: ...
+            def __init__(self, key: _Optional[str] = ..., value: _Optional[_Union[Function, _Mapping]] = ...) -> None: ...
 
         PROVIDER_FIELD_NUMBER: _ClassVar[int]
         RESOURCE_SCHEMAS_FIELD_NUMBER: _ClassVar[int]
@@ -526,9 +516,7 @@ class ValidateResourceConfig(_message.Message):
         CONFIG_FIELD_NUMBER: _ClassVar[int]
         type_name: str
         config: DynamicValue
-        def __init__(
-            self, type_name: _Optional[str] = ..., config: _Optional[_Union[DynamicValue, _Mapping]] = ...
-        ) -> None: ...
+        def __init__(self, type_name: _Optional[str] = ..., config: _Optional[_Union[DynamicValue, _Mapping]] = ...) -> None: ...
 
     class Response(_message.Message):
         __slots__ = ("diagnostics",)
@@ -547,9 +535,7 @@ class ValidateDataResourceConfig(_message.Message):
         CONFIG_FIELD_NUMBER: _ClassVar[int]
         type_name: str
         config: DynamicValue
-        def __init__(
-            self, type_name: _Optional[str] = ..., config: _Optional[_Union[DynamicValue, _Mapping]] = ...
-        ) -> None: ...
+        def __init__(self, type_name: _Optional[str] = ..., config: _Optional[_Union[DynamicValue, _Mapping]] = ...) -> None: ...
 
     class Response(_message.Message):
         __slots__ = ("diagnostics",)
@@ -568,9 +554,7 @@ class ConfigureProvider(_message.Message):
         CONFIG_FIELD_NUMBER: _ClassVar[int]
         terraform_version: str
         config: DynamicValue
-        def __init__(
-            self, terraform_version: _Optional[str] = ..., config: _Optional[_Union[DynamicValue, _Mapping]] = ...
-        ) -> None: ...
+        def __init__(self, terraform_version: _Optional[str] = ..., config: _Optional[_Union[DynamicValue, _Mapping]] = ...) -> None: ...
 
     class Response(_message.Message):
         __slots__ = ("diagnostics",)
@@ -854,9 +838,7 @@ class GetFunctions(_message.Message):
             VALUE_FIELD_NUMBER: _ClassVar[int]
             key: str
             value: Function
-            def __init__(
-                self, key: _Optional[str] = ..., value: _Optional[_Union[Function, _Mapping]] = ...
-            ) -> None: ...
+            def __init__(self, key: _Optional[str] = ..., value: _Optional[_Union[Function, _Mapping]] = ...) -> None: ...
 
         FUNCTIONS_FIELD_NUMBER: _ClassVar[int]
         DIAGNOSTICS_FIELD_NUMBER: _ClassVar[int]
@@ -879,9 +861,7 @@ class CallFunction(_message.Message):
         ARGUMENTS_FIELD_NUMBER: _ClassVar[int]
         name: str
         arguments: _containers.RepeatedCompositeFieldContainer[DynamicValue]
-        def __init__(
-            self, name: _Optional[str] = ..., arguments: _Optional[_Iterable[_Union[DynamicValue, _Mapping]]] = ...
-        ) -> None: ...
+        def __init__(self, name: _Optional[str] = ..., arguments: _Optional[_Iterable[_Union[DynamicValue, _Mapping]]] = ...) -> None: ...
 
     class Response(_message.Message):
         __slots__ = ("result", "error")

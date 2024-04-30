@@ -54,8 +54,9 @@ def main():
     # write back to file
 
     print(f"Writing to {grpc_python_out}")
-          
+
     grpc_python_out.write_text(grpc_file_text)
+
 
 if __name__ == "__main__":
     main()

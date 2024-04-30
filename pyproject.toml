@@ -10,6 +10,8 @@ dependencies = [
     "msgpack>=1.0.8",
     "anyio>=4.3.0",
     "loguru>=0.7.2",
+    "grpcio-health-checking>=1.62.2",
+    "cryptography>=42.0.5",
 ]
 requires-python = ">=3.12"
 readme = "README.md"
@@ -28,7 +30,11 @@ requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
 [tool.black]
-line-length = 119
+line-length = 160
+target-version = ['py312']
+
+[tool.ruff]
+line-length = 160
 
 [tool.pdm]
 distribution = true
