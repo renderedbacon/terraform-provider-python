@@ -13,6 +13,7 @@ from .tfplugin.tfplugin_pb2 import (
     PlanResourceChange,
     ReadDataSource,
     ReadResource,
+    Schema,
     ServerCapabilities,
     StopProvider,
     UpgradeResourceState,
@@ -42,7 +43,9 @@ class Provider(ProviderServicer):
         )
 
     async def GetProviderSchema(self, request: GetProviderSchema.Request, context) -> GetProviderSchema.Response:
-        raise NotImplementedError()
+        return GetProviderSchema.Response(
+            provider=Schema(block=Schema.Block(attributes=[])),
+        )
 
     async def ValidateProviderConfig(self, request: ValidateProviderConfig.Request, context) -> ValidateProviderConfig.Response:
         raise NotImplementedError()
@@ -84,7 +87,6 @@ class Provider(ProviderServicer):
         raise NotImplementedError()
 
     async def StopProvider(self, request: StopProvider.Request, context) -> StopProvider.Response:
-
         # cleanup any outstanding work
 
         # stop the server

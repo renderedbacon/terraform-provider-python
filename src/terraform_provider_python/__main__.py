@@ -1,5 +1,5 @@
 from json import dumps
-from os import getpid
+from os import environ, getpid
 from random import randint
 from signal import SIGINT, SIGTERM
 
@@ -11,6 +11,7 @@ from grpc_health.v1 import health_pb2
 from grpc_health.v1.health_pb2_grpc import add_HealthServicer_to_server
 from loguru import logger
 
+from .mtls import auto_mtls
 from .provider import Provider
 from .tfplugin.tfplugin_pb2_grpc import add_ProviderServicer_to_server
 
@@ -26,9 +27,16 @@ async def start_server(rpc: Server, task_group: TaskGroup, task_status: TaskStat
     add_ProviderServicer_to_server(Provider(rpc), rpc)
     add_HealthServicer_to_server(health, rpc)
 
-    # start the server (pick a random port)
-    listen_addr: str = f"0.0.0.0:{randint(49152, 65535)}"
-    rpc.add_insecure_port(listen_addr)
+    # add secure port if PLUGIN_CLIENT_CERT is set
+    if "PLUGIN_CLIENT_CERT" in environ:
+        listen_addr: str = f"0.0.0.0:{randint(49152, 65535)}"
+        tls_config, server_cert = auto_mtls()
+        rpc.add_secure_port(listen_addr, tls_config)
+    else:
+        listen_addr: str = "0.0.0.0:50001"
+        rpc.add_insecure_port(listen_addr)
+
+    # start the server
     await rpc.start()
 
     # Output information
@@ -37,10 +45,21 @@ async def start_server(rpc: Server, task_group: TaskGroup, task_status: TaskStat
     addr_network = "tcp"
     addr_string = listen_addr
     protocol_type = "grpc"
-    # server_cert = "" # TODO: add support for mTLS in the future
+
+    init_std_out: list[str] = [
+        str(core_protocol_version),
+        str(protocol_version),
+        addr_network,
+        addr_string,
+        protocol_type,
+    ]
+
+    # if we have a PLUGIN_CLIENT_CERT, add our generated server cert to the output
+    if "PLUGIN_CLIENT_CERT" in environ:
+        init_std_out.append(server_cert)
 
     # print the information to stdout for the client (terraform) to read
-    print(f"{core_protocol_version}|{protocol_version}|{addr_network}|{addr_string}|{protocol_type}", flush=True)
+    print("|".join(init_std_out), flush=True)
 
     pid: int = getpid()
     logger.debug(f"server strated on {listen_addr} (pid: {pid})")
