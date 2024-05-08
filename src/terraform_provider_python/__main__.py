@@ -104,5 +104,10 @@ async def serve():
         task_group.start_soon(handle_signals, rpc)
 
 
-# start the rpc server
-run(serve)
+def main():
+    # start the rpc server
+    run(serve)
+
+
+if __name__ == "__main__":
+    main()
