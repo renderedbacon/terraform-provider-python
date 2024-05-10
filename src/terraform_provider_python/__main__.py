@@ -77,7 +77,9 @@ async def start_server(rpc: Server, task_group: TaskGroup, task_status: TaskStat
             },
         },
     }
-    logger.debug(f"TF_REATTACH_PROVIDERS='{dumps(tf_reaatch_providers).replace(" ", "")}'")
+
+    if "PLUGIN_CLIENT_CERT" not in environ:
+        logger.debug(f"TF_REATTACH_PROVIDERS='{dumps(tf_reaatch_providers).replace(" ", "")}'")
 
     # wait for the server to stop
     await rpc.wait_for_termination()

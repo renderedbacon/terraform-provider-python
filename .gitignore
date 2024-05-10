@@ -159,6 +159,12 @@ cython_debug/
 .vscode
 .idea
 
-# terraform 
+# terraform
 *.tfstate
 .terraform/
+
+# generated build files
+*.spec
+terraform/.terraformrc
+terraform.tfstate
+terraform/mirror/

@@ -1,7 +1,7 @@
 [project]
 name = "terraform-provider-python"
 version = "0.1.0"
-description = "Terraform Provider Framework for Python"
+description = "Terraform Provider Python"
 authors = [{ name = "Ben Wart", email = "benwart@duck.com" }]
 dependencies = [
   "grpcio>=1.62.2",
@@ -17,11 +17,11 @@ license = { text = "MIT" }
 
 [project.optional-dependencies]
 dev = [
-    "grpcio-tools>=1.62.2",
-    "black>=24.4.2",
-    "pytest>=8.1.2",
-    "trio>=0.25.0",
-    "pyinstaller>=6.6.0",
+  "grpcio-tools>=1.62.2",
+  "black>=24.4.2",
+  "pytest>=8.1.2",
+  "trio>=0.25.0",
+  "pyinstaller>=6.6.0",
 ]
 
 [build-system]
