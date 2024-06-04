@@ -4,16 +4,15 @@
 # certificate and private key for use in mutual TLS (mTLS) communication.
 
 from base64 import standard_b64decode, standard_b64encode
-from datetime import datetime, timedelta, UTC
+from datetime import UTC, datetime, timedelta
 from os import environ
 from random import randint
 
 from cryptography import x509
-from cryptography.x509.oid import NameOID
-from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
+from cryptography.x509.oid import NameOID
 from grpc import ServerCredentials, ssl_server_credentials
 
 
@@ -53,7 +52,7 @@ def raw_base64_to_pem_cert(cert: str):
     length: int = 64
     wrapped: list[str] = [
         "-----BEGIN CERTIFICATE-----\n",
-        "\n".join((encoded[i : i + length] for i in range(0, len(encoded), length))),
+        "\n".join(encoded[i : i + length] for i in range(0, len(encoded), length)),
         "n-----END CERTIFICATE-----\n",
     ]
 

@@ -1,7 +1,6 @@
 from grpc.aio import Server
 from loguru import logger
 
-from .tfplugin.tfplugin_pb2_grpc import ProviderServicer
 from .tfplugin.tfplugin_pb2 import (
     ApplyResourceChange,
     CallFunction,
@@ -22,6 +21,7 @@ from .tfplugin.tfplugin_pb2 import (
     ValidateProviderConfig,
     ValidateResourceConfig,
 )
+from .tfplugin.tfplugin_pb2_grpc import ProviderServicer
 
 
 class Provider(ProviderServicer):
